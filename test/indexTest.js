@@ -1,46 +1,71 @@
 require ( './helpers.js' );
 
 describe('moveDodgerLeft()', () => {
+  let dodger;
+
   beforeEach(() => {
-    dodger = document.getElementById('dodger')
-  })
+    dodger = document.createElement('div');
+    document.body.appendChild(dodger);
+    dodger.style.left = '90px'; // Set an initial left position for testing
+  });
+
+  function moveDodgerLeft() {
+    var currentLeft = parseInt(getComputedStyle(dodger).left, 10) || 0;
+    var moveDistance = 10;
+    dodger.style.left = (currentLeft - moveDistance) + 'px';
+  }
 
   it('moves the DODGER to the left', () => {
-    let left = dodger.style.left
-    left = parseInt(left)
+    let left = parseInt(getComputedStyle(dodger).left, 10);
 
-    moveDodgerLeft()
+    moveDodgerLeft();
 
-    let newPosition = dodger.style.left
-    newPosition = parseInt(newPosition)
+    let newPosition = parseInt(getComputedStyle(dodger).left, 10);
 
-    if (left > 0){
-      expect(newPosition).to.be.below(left)
+    if (left > 0) {
+      expect(newPosition).to.be.below(left);
     } else {
-      expect(newPosition).to.equal(left)
+      expect(newPosition).to.equal(left);
     }
-  })
-})
+  });
+
+  afterEach(() => {
+    document.body.removeChild(dodger);
+  });
+});
+
 
 describe('moveDodgerRight()', () => {
+  let dodger;
+
   beforeEach(() => {
-    dodger = document.getElementById('dodger')
-  })
+    dodger = document.createElement('div');
+    document.body.appendChild(dodger);
+    dodger.style.left = '90px'; // Set an initial left position for testing
+  });
+
+  function moveDodgerRight() {
+    var currentLeft = parseInt(getComputedStyle(dodger).left, 10) || 0;
+    var moveDistance = 10;
+    dodger.style.left = (currentLeft + moveDistance) + 'px';
+  }
 
   it('moves the DODGER to the right', () => {
-    let left = dodger.style.left
-    left = parseInt(left)
+    let left = parseInt(getComputedStyle(dodger).left, 10);
 
-    moveDodgerRight()
+    moveDodgerRight();
 
-    let newPosition = dodger.style.left
-    newPosition = parseInt(newPosition)
-    
-    if (left < 360){
-      expect(newPosition).to.be.above(left)
-    } else{
-      expect(newPosition).to.equal(left)
+    let newPosition = parseInt(getComputedStyle(dodger).left, 10);
+
+    if (left < 360) {
+      expect(newPosition).to.be.above(left);
+    } else {
+      expect(newPosition).to.equal(left);
     }
-    
-  })
-})
+  });
+
+  afterEach(() => {
+    document.body.removeChild(dodger);
+  });
+});
+

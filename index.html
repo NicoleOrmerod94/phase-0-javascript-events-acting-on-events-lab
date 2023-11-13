@@ -1,16 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Rock Dodger! (Beta)</title>
-  <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Move Dodger Left</title>
+    <style>
+        #dodger {
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+        }
+
+        #moveButton {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #moveButton:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
+<title>Move Dodger Right</title>
+<style>
+    #dodger {
+        width: 50px;
+        height: 50px;
+        background-color: blue;
+        position: absolute;
+        top: 100px;
+        left: 100px;
+    }
+
+    #moveButton {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    #moveButton:hover {
+        background-color: #45a049;
+    }
+    </style>
 <body>
-  <div id="game">
-    <div id="dodger" style="bottom: 0px; left: 180px;"></div>
-  </div>
-  <script type="text/javascript" src="index.js"></script>
+    <div id="dodger"></div>
+    <button id="moveButton" onclick="moveDodgerLeft()">Move Left</button>
+    <div id="dodger"></div>
+    <button id="moveButton" onclick="moveDodgerRight()">Move Right</button>
+    <script>
+        function moveDodgerLeft() {
+            var dodger = document.getElementById("dodger");
+            var currentLeft = parseInt(getComputedStyle(dodger).left, 10) || 0;
+            var moveDistance = 10;
+
+            dodger.style.left = (currentLeft - moveDistance) + "px";
+        }
+        function moveDodgerRight() {
+            var dodger = document.getElementById("dodger");
+            var currentRight = parseInt(getComputedStyle(dodger).right, 10) || 0;
+            var moveDistance = 10;
+
+            dodger.style.right = (currentRight + moveDistance) + "px";
+        }
+    </script>
 </body>
 </html>
